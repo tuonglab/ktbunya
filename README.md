@@ -95,9 +95,10 @@ options:
                         single node) for MPI jobs.
   --walltime WALLTIME   Wall time for the session to run (and complete).
   --job_name JOB_NAME   Name of job.
-  --gres GRES           GRES syntax. phase2.0 nodes: --gres=gpu:tesla-smx2:4
-                        phase1.0 nodes: --gres=gpu:tesla:2 any(default)
-                        nodes: --gres=gpu:1
+  --gres GRES           GRES syntax.
+                        phase2.0 nodes: --gres=gpu:tesla-smx2:4
+                        phase1.0 nodes: --gres=gpu:tesla:2
+                        any(default) nodes: --gres=gpu:1
 ```
 
 Similarly this runs:
