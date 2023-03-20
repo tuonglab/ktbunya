@@ -104,7 +104,7 @@ options:
 Similarly this runs:
 
 ```bash
-srun --nodes 1 --ntasks-per-node 1 --job-name interactive_wiener --cpus-per-task 4 --mem 80000 --time 12:00:00 --partition gpu --gres gpu:1 --pty bash
+srun --nodes 1 --ntasks-per-node 1 --job-name interactive_wiener --cpus-per-task 1 --mem 80000 --time 12:00:00 --partition gpu --gres gpu:1 --pty bash
 ```
 
 ## Launching jupyter notebook from local machine with SSH tunnel
