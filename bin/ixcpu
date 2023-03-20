@@ -6,9 +6,9 @@ from subprocess import run
 DEFAULT_NNODESNTASKSNCPUS = 1
 DEFAULT_MEM = 80000
 DEFAULT_MEM_PER_CPU = None
-DEFAULT_WALLTIME = "2:00:00"
+DEFAULT_WALLTIME = "12:00:00"
 DEFAULT_ACCOUNT = "a_di_yu"
-DEFAULT_NAME = "interactive_bash_session"
+DEFAULT_NAME = "interactive_bunya"
 
 
 def parse_args():
