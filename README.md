@@ -15,7 +15,7 @@ pip install git+https://www.github.com/zktuong/ktbunya.git
 
 Create an interactive session with Bunya's cpu or Wiener's gpu nodes:
 
-### Bunya - CPU only
+### Bunya - CPU only (GPU if you are special)
 ```bash
 # create a simple interactive session with 1 cpu
 ixcpu
