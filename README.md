@@ -1,6 +1,7 @@
 # ktbunya
 Simple scripts to help create an interactive session to run jupyter notebooks using UQ's Bunya/Wiener compute.
 
+Only tested on unix. I don't know anything about windows.
 
 ## Installation
 
