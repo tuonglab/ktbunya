@@ -81,7 +81,7 @@ In which case, you have to do this manually:
 ps aux | grep 8883
 kill -9 <pid>
 ```
-where `pid` is `51138` in my example below:
+where `<pid>` is `51138` in my example below:
 
 ```bash
 uqztuong         51174   0.0  0.0 408636096   1456 s001  S+    4:37pm   0:00.00 grep 8883
