@@ -139,5 +139,6 @@ Just kill all the `pid` that appear until there's no more.
 
 ## Other useful readings
 
-https://github.com/UQ-RCC/hpc-docs
-https://blog.jupyter.org/connect-to-a-jupyterhub-from-visual-studio-code-ed7ed3a31bcb
+[UQ's HPC docs](https://github.com/UQ-RCC/hpc-docs)
+
+[How to connect vscode and juypter notebook directly](https://blog.jupyter.org/connect-to-a-jupyterhub-from-visual-studio-code-ed7ed3a31bcb)
