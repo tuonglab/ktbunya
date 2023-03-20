@@ -123,7 +123,7 @@ def main():
         f"    --ntasks = {args.ntasks}\n"
         f"    --account = {args.account}\n"
         f"    --walltime = {args.walltime}\n"
-        f"    --gres = {args.clean_output}\n"
+        f"    --gres = {args.gres}\n"
         f"--------------------------------------------------------------\n"
     )
     # actual command to run
