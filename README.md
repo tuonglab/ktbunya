@@ -64,7 +64,15 @@ options:
   --gres GRES           GRES syntax. phase2.0 nodes: --gres=gpu:tesla-smx2:4 phase1.0 nodes: --gres=gpu:tesla:2 any(default) nodes: --gres=gpu:1
 ```
 
-### Launching jupyter notebook from local machine with SSH tunnel
+The two commmands above basically run, e.g. `ixcpu`, this:
+```bash
+srun --nodes 1 --ntasks-per-node 1 --job-name interactive_bash_session --cpus-per-task 1 --mem 80000 --time 2:00:00 --partition general --account a_di_yu --pty bash
+```
+
+So you can just tweak this/add on if you require different set up.
+
+
+## Launching jupyter notebook from local machine with SSH tunnel
 ```bash
 jpynb
 ```
