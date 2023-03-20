@@ -73,9 +73,9 @@ Follow the instructions in the console print out before the usual jupyter notebo
 
 Default port is `8883`. You can specify a different port number e.g. `jpynb 1234`.
 
-Basically you just need to first run the ssh tunnel step (only need to run once if you just stay on the same node). Then you just open up your browser and type `http://http://localhost:${PORT}/` e.g. `http://http://localhost:8883/` if everything is default.
+Basically you just need to first run the ssh tunnel step (only need to run once if you just stay on the same node). Then you just open up your browser and type `http://localhost:${PORT}/` e.g. `http://http://localhost:8883/` if everything is default.
 
-You might need to kill your ssh tunnel if you experience some issues e.g. having to switch to a different node
+You might need to kill your ssh tunnel if you experience some issues e.g. having to switch to a different node or you haven't restarted your local machine for a while.
 
 In which case, you have to do this manually:
 
@@ -89,3 +89,5 @@ where `<pid>` is `51138` in my example below:
 uqztuong         51174   0.0  0.0 408636096   1456 s001  S+    4:37pm   0:00.00 grep 8883
 uqztuong         51138   0.0  0.0 409246592   5152   ??  Ss    4:36pm   0:00.04 ssh -N -f -L 8883:bun050.hpc.net.uq.edu.au:8883 uqztuong@bunya.rcc.uq.edu.au
 ````
+
+Just kill all the `pid` that appear until there's no more.
