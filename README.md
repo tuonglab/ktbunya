@@ -107,7 +107,7 @@ options:
                         any(default) nodes: --gres=gpu:1
 ```
 
-Similarly this runs:
+Similarly `ixgpu` just runs:
 
 ```bash
 srun --nodes 1 --ntasks-per-node 1 --job-name interactive_wiener --cpus-per-task 1 --mem 80000 --time 12:00:00 --partition gpu --gres gpu:1 --pty bash
