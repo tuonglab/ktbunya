@@ -1,16 +1,16 @@
 #!/bin/bash
 
-DEFAULTPORT=8883
+DEFAULTPORT=8884
 PORT="${1:-$DEFAULTPORT}"
 XDG_RUNTIME_DIR=""
-node=$(hostname -s).hpc.net.uq.edu.au
+node=$(hostname -i)
 user=$(whoami)
 
 echo -e "
 If you have not set up the ssh tunnel,
 Open a separate terminal on your local machine, and use the following to create a ssh tunnel:
 
-ssh -N -f -L ${PORT}:${node}:${PORT} ${user}@bunya.rcc.uq.edu.au
+ssh -N -f -L ${PORT}:${node}:${PORT} ${user}@wiener.hpc.dc.uq.edu.au
 
 To access the notebook, open this in a browser:
     http://localhost:${PORT}/

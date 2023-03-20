@@ -14,8 +14,8 @@ setup(
     url="https://github.com/zktuong/ktbunya/",
     packages=find_packages(),
     setup_requires=["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.0"],
-    package_data={"ktbunya": ["bin/jpynb", "bin/ixcpu", "bin/ixgpu"]},
-    data_files=[("bin", ["bin/jpynb", "bin/ixcpu", "bin/ixgpu"])],
+    package_data={"ktbunya": ["bin/jpynb", "bin/jpynbw", "bin/ixcpu", "bin/ixgpu"]},
+    data_files=[("bin", ["bin/jpynb", "bin/jpynbw", "bin/ixcpu", "bin/ixgpu"])],
     include_package_data=True,
     classifiers=[
         "Programming Language :: Python :: 3.10",
