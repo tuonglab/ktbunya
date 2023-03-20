@@ -71,3 +71,18 @@ jpynb
 Follow the instructions in the console print out.
 
 Default port is `8883`. You can specify a different port number e.g. `jpynb 1234`.
+
+You might need to kill your ssh tunnel if you experience some issues e.g. having to switch to a different node
+
+In which case, you have to do this manually:
+
+```bash
+ps aux | grep 8883
+kill -9 <pid>
+```
+where `pid` is `51138` in my example below:
+
+```bash
+uqztuong         51174   0.0  0.0 408636096   1456 s001  S+    4:37pm   0:00.00 grep 8883
+uqztuong         51138   0.0  0.0 409246592   5152   ??  Ss    4:36pm   0:00.04 ssh -N -f -L 8883:bun050.hpc.net.uq.edu.au:8883 uqztuong@bunya.rcc.uq.edu.au
+````
