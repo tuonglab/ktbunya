@@ -64,7 +64,7 @@ So you can just tweak this/add on if you require different set up.
 
 ### Wiener - GPU only
 ```bash
-# same for gpu on wiener, but with additional gres syntax
+# similarly for wiener
 ixgpu
 ```
 
