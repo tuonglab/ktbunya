@@ -106,3 +106,8 @@ uqztuong         51138   0.0  0.0 409246592   5152   ??  Ss    4:36pm   0:00.04 
 ````
 
 Just kill all the `pid` that appear until there's no more.
+
+## Other useful readings
+
+https://github.com/UQ-RCC/hpc-docs
+https://blog.jupyter.org/connect-to-a-jupyterhub-from-visual-studio-code-ed7ed3a31bcb
