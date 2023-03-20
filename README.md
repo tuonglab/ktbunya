@@ -118,7 +118,7 @@ Default port for `jpynb` (for `bunya`) is  `8883` and `jpynbw` (for `wiener`) is
 
 You may need to copy and paste the token manually on the browser, and login, for this to work.
 
-Basically you just need to first run the ssh tunnel step (only need to run once if you just stay on the same node). Then you just open up your browser and type `http://localhost:${PORT}/` e.g. `http://http://localhost:8883/` if everything is default.
+Basically you just need to first run the ssh tunnel step (only need to run once if you just stay on the same node). Then you just open up your browser and type `http://localhost:${PORT}/` e.g. `http://localhost:8883/` if everything is default.
 
 You might need to kill your ssh tunnel if you experience some issues e.g. having to switch to a different node or you haven't restarted your local machine for a while.
 
