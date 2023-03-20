@@ -1,0 +1,169 @@
+#!/usr/bin/env python
+
+import argparse
+from subprocess import run
+
+DEFAULT_NNODESNTASKSNCPUS = 1
+DEFAULT_MEM = 80000
+DEFAULT_MEM_PER_CPU = None
+DEFAULT_WALLTIME = "2:00:00"
+DEFAULT_ACCOUNT = "a_di_yu"
+DEFAULT_NAME = "interactive_bash_session"
+DEFAULT_GRES = "gpu:1"
+
+
+def parse_args():
+    """Parse command line arguments."""
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--ncpus",
+        type=int,
+        default=DEFAULT_NNODESNTASKSNCPUS,
+        help=(
+            "Number of cpus for job.\n"
+            "This is 1 for single core jobs, number of cores for multi core jobs, and 1 for MPI jobs.\n"
+            "This can be undertstood as `OMP_NUM_THREADS`.\n"
+        ),
+    )
+    parser.add_argument(
+        "--mem",
+        type=int,
+        default=DEFAULT_MEM,
+        help=(
+            "RAM per job given in megabytes (M), gigabytes (G), or terabytes (T).\n"
+            "Ask for 2000000M to get the maximum memory on a standard node.\n"
+            "Ask for 4000000M to get the maximum memory on a high memory node.\n"
+            "Default unit without specifying is in megabytes.\n"
+        ),
+    )
+    parser.add_argument(
+        "--mem_per_cpu",
+        type=int,
+        default=DEFAULT_MEM_PER_CPU,
+        help=(
+            "Alternative to --mem argument.\n"
+            "Only relevant to MPI jobs.\n"
+            "Passes to `-mem-per-cpu`.\n"
+        ),
+    )
+
+    parser.add_argument(
+        "--nodes",
+        type=int,
+        default=DEFAULT_NNODESNTASKSNCPUS,
+        help=(
+            "How many nodes the job will use.\n"
+            "Always 1 unless you know what you are doing."
+        ),
+    )
+    parser.add_argument(
+        "--ntasks",
+        type=int,
+        default=DEFAULT_NNODESNTASKSNCPUS,
+        help=(
+            "Always 1 unless you know what you are doing.\n"
+            "Passes to `--ntasks-per-node`.\n"
+            "This is 1 for single core jobs and multi core jobs.\n"
+            "This is 96 (or less if single node) for MPI jobs.\n"
+        ),
+    )
+    parser.add_argument(
+        "--account",
+        type=str,
+        default=DEFAULT_ACCOUNT,
+        help=(
+            "Account String for your research or accounting group.\n"
+            "All Account Strings start with `a_`.\n"
+            "Use the `groups` command to list your groups.\n"
+        ),
+    )
+    parser.add_argument(
+        "--walltime",
+        type=str,
+        default=DEFAULT_WALLTIME,
+        help="Wall time for the session to run (and complete).",
+    )
+    parser.add_argument(
+        "--job_name",
+        type=str,
+        default=DEFAULT_NAME,
+        help="Name of job.",
+    )
+    parser.add_argument(
+        "--gres",
+        type=str,
+        default=DEFAULT_GRES,
+        help=(
+            "GRES syntax.\n"
+            "phase2.0 nodes: --gres=gpu:tesla-smx2:4\n"
+            "phase1.0 nodes: --gres=gpu:tesla:2\n"
+            "any(default) nodes: --gres=gpu:1\n"
+        ),
+    )
+    args = parser.parse_args()
+    return args
+
+
+def main():
+    args = parse_args()
+    # always print to options called
+    print(
+        f"Options requested\n"
+        f"--------------------------------------------------------------\n"
+        f"    --job_name = {args.job_name}\n"
+        f"    --ncpus = {args.ncpus}\n",
+        end="",
+    )
+    if args.mem_per_cpu is None:
+        print(f"    --mem = {args.mem}\n", end="")
+    else:
+        print(f"    --mem_per_cpu = {args.mem_per_cpu}\n", end="")
+    print(
+        f"    --nodes = {args.nodes}\n"
+        f"    --ntasks = {args.ntasks}\n"
+        f"    --account = {args.account}\n"
+        f"    --walltime = {args.walltime}\n"
+        f"    --gres = {args.clean_output}\n"
+        f"--------------------------------------------------------------\n"
+    )
+    # actual command to run
+    cmd = [
+        "srun",
+        "--nodes",
+        str(args.nodes),
+        "--ntasks-per-node",
+        str(args.ntasks),
+        "--job-name",
+        str(args.job_name),
+        "--cpus-per-task",
+        str(args.ncpus),
+        "--time",
+        str(args.walltime),
+    ]
+    if args.mem_per_cpu is None:
+        mems = [
+            "--mem",
+            str(args.mem),
+        ]
+    else:
+        mems = [
+            "--mem-per-cpu",
+            str(args.mem_per_cpu),
+        ]
+    partition = [
+        "--partition",
+        "gpu",
+        "--gres",
+        args.gres,
+    ]
+    fin = ["--account", str(args.account), "--pty", "bash"]
+
+    # concatenate command
+    full_cmd = cmd + mems + partition + fin
+
+    # request the job
+    run(full_cmd)
+
+
+if __name__ == "__main__":
+    main()
