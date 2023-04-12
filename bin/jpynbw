@@ -11,11 +11,6 @@ If you have not set up the ssh tunnel,
 Open a separate terminal on your local machine, and use the following to create a ssh tunnel:
 
 ssh -N -f -L ${PORT}:${node}:${PORT} ${user}@wiener.hpc.dc.uq.edu.au
-
-To access the notebook, open this in a browser:
-    http://localhost:${PORT}/
-
-Ignore the instructions below.
 "
 
-jupyter notebook --no-browser --port=${PORT} --ip=${node} --ServerApp.token=abcd
+jupyter notebook --no-browser --port=${PORT} --ip=${node} --ServerApp.token=abcd --NotebookApp.custom_display_url=http://localhost:${PORT}/
