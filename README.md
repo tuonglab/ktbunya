@@ -118,13 +118,13 @@ srun --nodes 1 --ntasks-per-node 1 --job-name interactive_wiener --cpus-per-task
 jpynb
 ```
 
-Follow the instructions in the console print out before the usual jupyter notebook print outs. Scroll up if it happens too quickly.
+Follow the instructions in the console print out to access the notebook.
 
 Default port for `jpynb` (for `bunya`) is  `8883` and `jpynbw` (for `wiener`) is `8884`. You can specify a different port number e.g. `jpynb 1234`.
 
 You may need to copy and paste the token manually on the browser, and login, for this to work.
 
-Basically you just need to first run the ssh tunnel step (only need to run once if you just stay on the same node). Then you just open up your browser and type `http://localhost:${PORT}/` e.g. `http://localhost:8883/` if everything is default.
+Basically you just need to first run the ssh tunnel step (only need to run once if you just stay on the same node). Then you just open up your browser and type `http://localhost:${PORT}/` e.g. `http://localhost:8883/` if everything is default. If you want to connect to the notebook directly, copy the link with the token.
 
 You might need to kill your ssh tunnel if you experience some issues e.g. having to switch to a different node or you haven't restarted your local machine for a while.
 
@@ -148,6 +148,8 @@ Just kill all the `pid` that appear until there's no more.
 Now combining the two above (`ixcpu` and `jpynb`) and interacting with it with VS code, click and watch this video I created on youtube:
 
 [![connecting lVS Code to bunya](https://img.youtube.com/vi/a53CsD-8sHs/0.jpg)](https://www.youtube.com/watch?v=a53CsD-8sHs)
+
+The video is a bit outdated and now you don't need to fuss around with copying and editing the url and token. Just use whatever it says on the prompts when you launch jupyter notebook. It will always be `http://localhost:${PORT}/?token=<somelongtoken>`
 
 ## Other useful readings
 
