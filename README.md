@@ -8,7 +8,7 @@ Only tested on unix. I don't know anything about windows.
 In your conda environment (e.g. `test`), make sure you have `jupyter` installed and running `python>=3.10`.
 ```bash
 conda create --name test jupyter "python=3.10"
-pip install git+https://www.github.com/zktuong/ktbunya.git
+pip install git+https://www.github.com/tuonglab/ktbunya.git
 ```
 
 ## Usage
