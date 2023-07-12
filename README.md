@@ -63,7 +63,7 @@ ixcpu --ncpus 24 --mem 32000
 
 The default command (just `ixcpu`) runs:
 ```bash
-srun --nodes 1 --ntasks-per-node 1 --job-name interactive_bunya --cpus-per-task 1 --mem 80000 --time 12:00:00 --partition general --account a_di_yu --pty bash
+srun --nodes 1 --ntasks-per-node 1 --job-name interactive_bunya --cpus-per-task 1 --mem 80000 --time 12:00:00 --partition general --account a_kelvin_tuong --pty bash
 ```
 
 You can just tweak this/add on if you require different set up.
