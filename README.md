@@ -143,6 +143,17 @@ uqztuong         51138   0.0  0.0 409246592   5152   ??  Ss    4:36pm   0:00.04 
 
 Just kill all the `pid` that appear until there's no more.
 
+There's now a simple function to do the above
+```bash
+killssh
+```
+
+which effectively runs
+
+```bash
+pkill -9 ssh
+```
+
 ## Connect VS Code on local machine to jupyter notebook on interactive session on Bunya
 
 Now combining the two above (`ixcpu` and `jpynb`) and interacting with it with VS code, click and watch this video I created on youtube:
