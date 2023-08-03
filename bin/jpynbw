@@ -13,4 +13,4 @@ Open a separate terminal on your local machine, and use the following to create 
 ssh -N -f -L ${PORT}:${node}:${PORT} ${user}@wiener.hpc.dc.uq.edu.au
 "
 
-jupyter notebook --no-browser --port=${PORT} --ip=${node} --ServerApp.token=abcd --NotebookApp.custom_display_url=http://localhost:${PORT}/
+jupyter notebook --no-browser --port=${PORT} --ip=${node} --NotebookApp.custom_display_url=http://localhost:${PORT}/
