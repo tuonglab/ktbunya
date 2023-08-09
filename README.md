@@ -170,6 +170,7 @@ Watch the video for the full walkthrough, but the steps can be summarised below:
 3) Copy the localhost link
 4) Open an iPython notebook, select the kernel and enter the localhost link
 
+Previous video to do the same thing but by opening different terminals on a Mac:
 [![connecting lVS Code to bunya](https://img.youtube.com/vi/a53CsD-8sHs/0.jpg)](https://www.youtube.com/watch?v=a53CsD-8sHs)
 
 ## Other useful readings
