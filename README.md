@@ -117,12 +117,15 @@ srun --nodes 1 --ntasks-per-node 1 --job-name interactive_wiener --cpus-per-task
 ```bash
 jpynb
 ```
-
 Follow the instructions in the console print out to access the notebook.
 
 Default port for `jpynb` (for `bunya`) is  `8883` and `jpynbw` (for `wiener`) is `8884`. You can specify a different port number e.g. `jpynb 1234`.
 
 You may need to copy and paste the token manually on the browser, and login, for this to work.
+
+Open a SSH tunnel:
+
+`ssh -N -f -L 8883:yourallocatednode.hpc.net.uq.edu.au:8883 yourusername@bunya.rcc.uq.edu.au`
 
 Basically you just need to first run the ssh tunnel step (only need to run once if you just stay on the same node). Then you just open up your browser and type `http://localhost:${PORT}/` e.g. `http://localhost:8883/` if everything is default. If you want to connect to the notebook directly, copy the link with the token.
 
@@ -154,13 +157,20 @@ which effectively runs
 pkill -9 ssh
 ```
 
-## Connect VS Code on local machine to jupyter notebook on interactive session on Bunya
+## Connect VS Code to Jupyter Notebook using Bunya Compute Nodes
 
 Now combining the two above (`ixcpu` and `jpynb`) and interacting with it with VS code, click and watch this video I created on youtube:
 
-[![connecting lVS Code to bunya](https://img.youtube.com/vi/a53CsD-8sHs/0.jpg)](https://www.youtube.com/watch?v=a53CsD-8sHs)
+[![connecting lVS Code to bunya (NEW)](https://img.youtube.com/vi/6TqfFZtxKYA/0.jpg)](https://www.youtube.com/watch?v=6TqfFZtxKYA)
 
-The video is a bit outdated and now you don't need to fuss around with copying and editing the url and token. Just use whatever it says on the prompts when you launch jupyter notebook. It will always be `http://localhost:${PORT}/?token=<somelongtoken>`
+Watch the video for the full walkthrough, but the steps can be summarised below:
+
+1) Run `jpynb`
+2) Open a new terminal, open SSH tunnel using the link shown, kill other SSH tunnels opened at the same PORT if you have not already
+3) Copy the localhost link
+4) Open an iPython notebook, select the kernel and enter the localhost link
+
+[![connecting lVS Code to bunya](https://img.youtube.com/vi/a53CsD-8sHs/0.jpg)](https://www.youtube.com/watch?v=a53CsD-8sHs)
 
 ## Other useful readings
 
