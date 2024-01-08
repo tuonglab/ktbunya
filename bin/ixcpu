@@ -94,7 +94,11 @@ def parse_args():
         "--partition",
         type=str,
         default=DEFAULT_PARTITION,
-        help="Partition to submit job to.",
+        help=(
+            "Partition to submit job to.\n"
+            "Available partitions are general, debug, gpu_rocm, gpu_cuda, gpu_viz.\n"
+            "Default is general. GPU partitions should only be used for GPU jobs.\n"
+        ),
     )
     parser.add_argument(
         "--gpu",
@@ -128,6 +132,7 @@ def main():
     print(
         f"    --nodes = {args.nodes}\n"
         f"    --ntasks = {args.ntasks}\n"
+        f"    --partition = {args.partition}\n"
         f"    --account = {args.account}\n"
         f"    --walltime = {args.walltime}\n"
         f"--------------------------------------------------------------\n"

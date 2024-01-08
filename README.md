@@ -46,6 +46,9 @@ options:
                         `--ntasks-per-node`. This is 1 for single core jobs
                         and multi core jobs. This is 96 (or less if single
                         node) for MPI jobs.
+  --partition PARTITION Partition to submit your job to.
+                        Available  partitions are general, debug, gpu_rocm, gpu_cuda, gpu_viz.
+                        Default is general. GPU partitions should only be used for GPU jobs.
   --account ACCOUNT     Account String for your research or accounting group.
                         All Account Strings start with `a_`. Use the `groups`
                         command to list your groups.
