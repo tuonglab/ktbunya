@@ -71,6 +71,8 @@ srun --nodes 1 --ntasks-per-node 1 --job-name interactive_bunya --cpus-per-task 
 
 You can just tweak this/add on if you require different set up.
 
+#### NOTE: see the different combinations of GPU partitions and GPU availables: https://github.com/UQ-RCC/hpc-docs/blob/main/guides/Bunya-User-Guide.md
+
 ### Wiener - GPU only
 ```bash
 # similarly for wiener
