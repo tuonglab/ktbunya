@@ -10,6 +10,7 @@ DEFAULT_WALLTIME = "12:00:00"
 DEFAULT_ACCOUNT = "a_kelvin_tuong"
 DEFAULT_NAME = "interactive_bunya"
 DEFAULT_GRES = "gpu:a100:1"
+DEFAULT_GPU_PARTITION = "gpu_cuda"
 
 
 def parse_args():
@@ -92,13 +93,26 @@ def parse_args():
     parser.add_argument(
         "--gpu",
         action="store_true",
-        help="If passed, submit to gpu queue.",
+        help="If passed, submit to gpu queue. Overwrite partition with --partition.",
     )
     parser.add_argument(
         "--gres",
         type=str,
         default=DEFAULT_GRES,
-        help=("GRES syntax.\n" "Requires  `gpu:[type]:[number]`\n"),
+        help=(
+            "GRES syntax.\n"
+            "Requires  `gpu:[type]:[number]`. Type options for corresponding partitions are:\n"
+            + "gpu_cuda: h100, l40, a100\n"
+            + "gpu_viz: l40\n"
+            + "gpu_rocm: mi210\n"
+            + "Visit https://github.com/UQ-RCC/hpc-docs/blob/main/guides/Bunya-User-Guide.md for more information."
+        ),
+    )
+    parser.add_argument(
+        "--partition",
+        type=str,
+        default=None,
+        help="If passed, overwrite partition.",
     )
     args = parser.parse_args()
     return args
@@ -106,6 +120,8 @@ def parse_args():
 
 def main():
     args = parse_args()
+    if args.partition is None:
+        partition = DEFAULT_GPU_PARTITION if args.gpu else "general"
     # always print to options called
     print(
         f"Options requested\n"
@@ -123,6 +139,7 @@ def main():
         f"    --ntasks = {args.ntasks}\n"
         f"    --account = {args.account}\n"
         f"    --walltime = {args.walltime}\n"
+        f"    --partition = {partition}\n"
         f"--------------------------------------------------------------\n"
     )
     # actual command to run
@@ -149,17 +166,14 @@ def main():
             "--mem-per-cpu",
             str(args.mem_per_cpu),
         ]
+    partition = [
+        "--partition",
+        partition,
+    ]
     if args.gpu:
-        partition = [
-            "--partition",
-            "gpu",  # general/gpu/debug/ai
+        partition += [  # general/gpu/debug/ai
             "--gres",
             args.gres,
-        ]
-    else:
-        partition = [
-            "--partition",
-            "general",  # general/gpu/debug/ai
         ]
 
     fin = ["--account", str(args.account), "--pty", "bash"]
