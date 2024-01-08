@@ -9,6 +9,7 @@ DEFAULT_MEM_PER_CPU = None
 DEFAULT_WALLTIME = "12:00:00"
 DEFAULT_ACCOUNT = "a_kelvin_tuong"
 DEFAULT_NAME = "interactive_bunya"
+DEFAULT_PARTITION = "general"
 DEFAULT_GRES = "gpu:a100:1"
 
 
@@ -90,6 +91,12 @@ def parse_args():
         help="Name of job.",
     )
     parser.add_argument(
+        "--partition",
+        type=str,
+        default=DEFAULT_PARTITION,
+        help="Partition to submit job to.",
+    )
+    parser.add_argument(
         "--gpu",
         action="store_true",
         help="If passed, submit to gpu queue.",
@@ -152,14 +159,14 @@ def main():
     if args.gpu:
         partition = [
             "--partition",
-            "gpu",  # general/gpu/debug/ai
+            args.partition,  # general/gpu/debug/ai
             "--gres",
             args.gres,
         ]
     else:
         partition = [
             "--partition",
-            "general",  # general/gpu/debug/ai
+            args.partition,  # general/gpu/debug/ai
         ]
 
     fin = ["--account", str(args.account), "--pty", "bash"]
