@@ -122,6 +122,8 @@ def main():
     args = parse_args()
     if args.partition is None:
         partition = DEFAULT_GPU_PARTITION if args.gpu else "general"
+    else:
+        partition = args.partition
     # always print to options called
     print(
         f"Options requested\n"
@@ -170,7 +172,7 @@ def main():
         "--partition",
         partition,
     ]
-    if args.gpu:
+    if args.gpu or args.partition is not None:
         partition += [  # general/gpu/debug/ai
             "--gres",
             args.gres,
