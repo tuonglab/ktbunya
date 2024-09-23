@@ -4,9 +4,9 @@ import argparse
 from subprocess import run
 
 DEFAULT_NNODESNTASKSNCPUS = 1
-DEFAULT_MEM = 80000
+DEFAULT_MEM = 8000
 DEFAULT_MEM_PER_CPU = None
-DEFAULT_WALLTIME = "12:00:00"
+DEFAULT_WALLTIME = "00:10:00"
 DEFAULT_NAME = "interactive_wiener"
 DEFAULT_GRES = "gpu:1"
 

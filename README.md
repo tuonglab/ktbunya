@@ -57,7 +57,7 @@ ixcpu --ncpus 24 --mem 32000
 
 The default command (just `ixcpu`) runs:
 ```bash
-srun --nodes 1 --ntasks-per-node 1 --job-name interactive_bunya --cpus-per-task 1 --mem 80000 --time 12:00:00 --partition general --account a_kelvin_tuong --pty bash
+srun --nodes 1 --ntasks-per-node 1 --job-name interactive_bunya --cpus-per-task 1 --mem 8000 --time 00:10:00 --partition general --account a_kelvin_tuong --pty bash
 ```
 
 You can just tweak this/add on if you require different set up.
@@ -127,7 +127,7 @@ options:
 Similarly `ixgpu` just runs:
 
 ```bash
-srun --nodes 1 --ntasks-per-node 1 --job-name interactive_wiener --cpus-per-task 1 --mem 80000 --time 12:00:00 --partition gpu --gres gpu:1 --pty bash
+srun --nodes 1 --ntasks-per-node 1 --job-name interactive_wiener --cpus-per-task 1 --mem 8000 --time 00:10:00 --partition gpu --gres gpu:1 --pty bash
 ```
 
 ## Launching Jupyter Notebook running on Compute Node on VSCode
