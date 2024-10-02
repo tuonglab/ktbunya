@@ -70,6 +70,18 @@ ixcpu --gpu
 
 This will request `--partition gpu_cuda --gres gpu:h100:1` by default. Visit https://github.com/UQ-RCC/hpc-docs/blob/main/guides/Bunya-User-Guide.md for more information.
 
+Alternatively, the `ixgpu` command is available as a shortcut for requesting a GPU node. It runs the same command as `ixcpu --gpu`.
+
+```bash
+ixgpu
+```
+
+`ixgpu` just runs:
+
+```bash
+srun --nodes 1 --ntasks-per-node 1 --job-name interactive_bunya --cpus-per-task 1 --mem 8000 --time 00:10:00 --partition gpu_cuda --gres gpu:h100:1 --account a_kelvin_tuong --pty bash
+```
+
 Preliminary testing suggest that you don't need to specify `CUDA` version for `pytorch`. To install `pytorch` I just went with:
 ```
 conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
@@ -85,50 +97,6 @@ print(
 )
 ```
 
-### Wiener - GPU only
-```bash
-# similarly for wiener
-ixgpu
-```
-
-```bash
-usage: ixgpu [-h] [--ncpus NCPUS] [--mem MEM] [--mem_per_cpu MEM_PER_CPU]
-             [--nodes NODES] [--ntasks NTASKS] [--walltime WALLTIME]
-             [--job_name JOB_NAME] [--gres GRES]
-
-options:
-  -h, --help            show this help message and exit
-  --ncpus NCPUS         Number of cpus for job. This is 1 for single core
-                        jobs, number of cores for multi core jobs, and 1 for
-                        MPI jobs. This can be undertstood as
-                        `OMP_NUM_THREADS`.
-  --mem MEM             RAM per job given in megabytes (M), gigabytes (G),
-                        or terabytes (T). Ask for 2000000M to get the
-                        maximum memory on a standard node. Ask for 4000000M
-                        to get the maximum memory on a high memory node.
-                        Default unit without specifying is in megabytes.
-  --mem_per_cpu MEM_PER_CPU
-                        Alternative to --mem argument. Only relevant to MPI
-                        jobs. Passes to `-mem-per-cpu`.
-  --nodes NODES         How many nodes the job will use. Always 1 unless you
-                        know what you are doing.
-  --ntasks NTASKS       Always 1 unless you know what you are doing. Passes
-                        to `--ntasks-per-node`. This is 1 for single core
-                        jobs and multi core jobs. This is 96 (or less if
-                        single node) for MPI jobs.
-  --walltime WALLTIME   Wall time for the session to run (and complete).
-  --job_name JOB_NAME   Name of job.
-  --gres GRES           GRES syntax.
-                        phase2.0 nodes: --gres=gpu:tesla-smx2:4
-                        phase1.0 nodes: --gres=gpu:tesla:2
-                        any(default) nodes: --gres=gpu:1
-```
-
-Similarly `ixgpu` just runs:
-
-```bash
-srun --nodes 1 --ntasks-per-node 1 --job-name interactive_wiener --cpus-per-task 1 --mem 8000 --time 00:10:00 --partition gpu --gres gpu:1 --pty bash
-```
 
 ## Launching Jupyter Notebook running on Compute Node on VSCode
 ```bash
@@ -151,4 +119,4 @@ socket.gethostname()
 ```
 <b>INFO</b>:
 
-Default port for `jpynb` (for `bunya`) is  `8883` and `jpynbw` (for `wiener`) is `8884`. You can specify a different port number e.g. `jpynb 1234`.
+Default port for `jpynb` (for `bunya`) is  `8883`. You can specify a different port number e.g. `jpynb 1234`.

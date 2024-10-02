@@ -136,6 +136,8 @@ def main():
         print(f"    --mem = {args.mem}\n", end="")
     else:
         print(f"    --mem_per_cpu = {args.mem_per_cpu}\n", end="")
+    if args.gpu:
+        print(f"    --gres = {args.gres}\n", end="")
     print(
         f"    --nodes = {args.nodes}\n"
         f"    --ntasks = {args.ntasks}\n"
