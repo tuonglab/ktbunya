@@ -13,7 +13,7 @@ pip install git+https://www.github.com/tuonglab/ktbunya.git
 
 ## Usage
 
-Create an interactive session with Bunya's cpu or Wiener's gpu nodes:
+Create an interactive session with Bunya's cpu/gpu nodes:
 
 ### Bunya - CPU or GPU
 ```bash
