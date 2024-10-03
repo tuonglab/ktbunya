@@ -7,8 +7,10 @@ DEFAULT_NNODESNTASKSNCPUS = 1
 DEFAULT_MEM = 8000
 DEFAULT_MEM_PER_CPU = None
 DEFAULT_WALLTIME = "00:10:00"
-DEFAULT_NAME = "interactive_wiener"
-DEFAULT_GRES = "gpu:1"
+DEFAULT_ACCOUNT = "a_kelvin_tuong"
+DEFAULT_NAME = "interactive_bunya"
+DEFAULT_GRES = "gpu:h100:1"
+DEFAULT_GPU_PARTITION = "gpu_cuda"
 
 
 def parse_args():
@@ -67,6 +69,16 @@ def parse_args():
         ),
     )
     parser.add_argument(
+        "--account",
+        type=str,
+        default=DEFAULT_ACCOUNT,
+        help=(
+            "Account String for your research or accounting group.\n"
+            "All Account Strings start with `a_`.\n"
+            "Use the `groups` command to list your groups.\n"
+        ),
+    )
+    parser.add_argument(
         "--walltime",
         type=str,
         default=DEFAULT_WALLTIME,
@@ -84,10 +96,18 @@ def parse_args():
         default=DEFAULT_GRES,
         help=(
             "GRES syntax.\n"
-            "phase2.0 nodes: --gres=gpu:tesla-smx2:4\n"
-            "phase1.0 nodes: --gres=gpu:tesla:2\n"
-            "any(default) nodes: --gres=gpu:1\n"
+            "Requires  `gpu:[type]:[number]`. Type options for corresponding partitions are:\n"
+            + "gpu_cuda: h100, l40, a100\n"
+            + "gpu_viz: l40\n"
+            + "gpu_rocm: mi210\n"
+            + "Visit https://github.com/UQ-RCC/hpc-docs/blob/main/guides/Bunya-User-Guide.md for more information."
         ),
+    )
+    parser.add_argument(
+        "--partition",
+        type=str,
+        default=None,
+        help="If passed, overwrite partition.",
     )
     args = parser.parse_args()
     return args
@@ -95,6 +115,10 @@ def parse_args():
 
 def main():
     args = parse_args()
+    if args.partition is None:
+        partition = DEFAULT_GPU_PARTITION if args.gpu else "general"
+    else:
+        partition = args.partition
     # always print to options called
     print(
         f"Options requested\n"
@@ -107,11 +131,13 @@ def main():
         print(f"    --mem = {args.mem}\n", end="")
     else:
         print(f"    --mem_per_cpu = {args.mem_per_cpu}\n", end="")
+    print(f"    --gres = {args.gres}\n", end="")
     print(
         f"    --nodes = {args.nodes}\n"
         f"    --ntasks = {args.ntasks}\n"
+        f"    --account = {args.account}\n"
         f"    --walltime = {args.walltime}\n"
-        f"    --gres = {args.gres}\n"
+        f"    --partition = {partition}\n"
         f"--------------------------------------------------------------\n"
     )
     # actual command to run
@@ -140,11 +166,15 @@ def main():
         ]
     partition = [
         "--partition",
-        "gpu",
-        "--gres",
-        args.gres,
+        partition,
     ]
-    fin = ["--pty", "bash"]
+    if args.partition is not None:
+        partition += [  # general/gpu/debug/ai
+            "--gres",
+            args.gres,
+        ]
+
+    fin = ["--account", str(args.account), "--pty", "bash"]
 
     # concatenate command
     full_cmd = cmd + mems + partition + fin

@@ -9,7 +9,7 @@ DEFAULT_MEM_PER_CPU = None
 DEFAULT_WALLTIME = "00:10:00"
 DEFAULT_ACCOUNT = "a_kelvin_tuong"
 DEFAULT_NAME = "interactive_bunya"
-DEFAULT_GRES = "gpu:a100:1"
+DEFAULT_GRES = "gpu:h100:1"
 DEFAULT_GPU_PARTITION = "gpu_cuda"
 
 
@@ -136,6 +136,8 @@ def main():
         print(f"    --mem = {args.mem}\n", end="")
     else:
         print(f"    --mem_per_cpu = {args.mem_per_cpu}\n", end="")
+    if args.gpu:
+        print(f"    --gres = {args.gres}\n", end="")
     print(
         f"    --nodes = {args.nodes}\n"
         f"    --ntasks = {args.ntasks}\n"
