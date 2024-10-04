@@ -116,7 +116,7 @@ def parse_args():
 def main():
     args = parse_args()
     if args.partition is None:
-        partition = DEFAULT_GPU_PARTITION if args.gpu else "general"
+        partition = DEFAULT_GPU_PARTITION
     else:
         partition = args.partition
     # always print to options called
