@@ -5,7 +5,7 @@ with open("README.md", "r") as readme_file:
 
 setup(
     name="ktbunya",
-    version="0.7.0",
+    version="0.7.1",
     author="zktuong",
     author_email="z.tuong@uq.edu.au",
     description="Simple scripts to help create an interactive session to run jupyter notebooks using UQ's Bunya/Wiener compute.",
@@ -19,6 +19,8 @@ setup(
     include_package_data=True,
     classifiers=[
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
         "License :: OSI Approved :: MIT License",
     ],
     zip_safe=False,
