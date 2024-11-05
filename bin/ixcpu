@@ -114,6 +114,12 @@ def parse_args():
         default=None,
         help="If passed, overwrite partition.",
     )
+    parser.add_argument(
+        "--qos",
+        type=str,
+        default="normal",
+        help="QoS are used to control access to resources and apply sustainable limits. Accepts one of normal, gpu, debug, mig, sxm.",
+    )
     args = parser.parse_args()
     return args
 
@@ -124,6 +130,13 @@ def main():
         partition = DEFAULT_GPU_PARTITION if args.gpu else "general"
     else:
         partition = args.partition
+    if args.qos is None:
+        if args.gpu:
+            qos = "gpu"
+        else:
+            qos = "normal"
+    else:
+        qos = args.qos
     # always print to options called
     print(
         f"Options requested\n"
@@ -144,6 +157,7 @@ def main():
         f"    --account = {args.account}\n"
         f"    --walltime = {args.walltime}\n"
         f"    --partition = {partition}\n"
+        f"    --qos = {qos}\n"
         f"--------------------------------------------------------------\n"
     )
     # actual command to run
@@ -179,11 +193,14 @@ def main():
             "--gres",
             args.gres,
         ]
-
+    qos = [
+        "--qos",
+        qos,
+    ]
     fin = ["--account", str(args.account), "--pty", "bash"]
 
     # concatenate command
-    full_cmd = cmd + mems + partition + fin
+    full_cmd = cmd + mems + partition + qos + fin
 
     # request the job
     run(full_cmd)
