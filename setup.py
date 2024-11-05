@@ -5,7 +5,7 @@ with open("README.md", "r") as readme_file:
 
 setup(
     name="ktbunya",
-    version="0.7.1",
+    version="0.8.0",
     author="zktuong",
     author_email="z.tuong@uq.edu.au",
     description="Simple scripts to help create an interactive session to run jupyter notebooks using UQ's Bunya/Wiener compute.",
