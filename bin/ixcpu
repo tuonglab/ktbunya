@@ -117,7 +117,7 @@ def parse_args():
     parser.add_argument(
         "--qos",
         type=str,
-        default="normal",
+        default=None,
         help="QoS are used to control access to resources and apply sustainable limits. Accepts one of normal, gpu, debug, mig, sxm.",
     )
     args = parser.parse_args()
