@@ -131,10 +131,7 @@ def main():
     else:
         partition = args.partition
     if args.qos is None:
-        if args.gpu:
-            qos = "gpu"
-        else:
-            qos = "normal"
+        qos = "gpu" if args.gpu else "normal"
     else:
         qos = args.qos
     # always print to options called
