@@ -115,6 +115,11 @@ def parse_args():
         default=None,
         help="QoS are used to control access to resources and apply sustainable limits. Accepts one of normal, gpu, debug, mig, sxm.",
     )
+    parser.add_argument(
+        "--dry_run",
+        action="store_true",
+        help="Print the command that would be run without running it.",
+    )
     args = parser.parse_args()
     return args
 
@@ -194,6 +199,9 @@ def main():
     full_cmd = cmd + mems + partition + qos + fin
 
     # request the job
+    if args.dry_run:
+        print(" ".join(full_cmd))
+        return
     run(full_cmd)
 
 
