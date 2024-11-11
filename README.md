@@ -93,6 +93,21 @@ print(
 )
 ```
 
+If you do need to find out and specify your `cuda` version, you can run:
+```bash
+# this will map the correct cuda path to your module path
+source cuda
+
+# you can then check the available cuda versions with
+# module avail
+
+# finally to load the default cuda version
+module load cuda
+
+# to check
+nvcc --version
+```
+
 
 ## Launching Jupyter Notebook running on Compute Node on VSCode
 ```bash
