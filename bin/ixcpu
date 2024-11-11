@@ -204,8 +204,8 @@ def main():
     # concatenate command
     full_cmd = cmd + mems + partition + qos + fin
 
-    # if args.gpu:
-    #     full_cmd += [";set_cuda_mod"]
+    if args.gpu:
+        full_cmd += ['-c "source set_cuda_mod; bash"']
 
     if args.dryrun:
         print(" ".join(full_cmd))
