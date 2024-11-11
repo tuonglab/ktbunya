@@ -60,7 +60,3 @@ else
     echo "Error: No CUDA or AMD mapping found for node $node."
     exit 1
 fi
-
-# Load the CUDA module
-module load cuda
-module list
