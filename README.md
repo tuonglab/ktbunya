@@ -75,7 +75,7 @@ ixgpu
 `ixgpu` just runs:
 
 ```bash
-srun --nodes 1 --ntasks-per-node 1 --job-name interactive_bunya --cpus-per-task 1 --mem 8000 --time 00:10:00 --partition gpu_cuda --gres gpu:h100:1 --qos normal --account a_kelvin_tuong --pty bash
+srun --nodes 1 --ntasks-per-node 1 --job-name interactive_bunya --cpus-per-task 1 --mem 8000 --time 00:10:00 --partition gpu_cuda --gres gpu:h100:1 --qos gpu --account a_kelvin_tuong --pty bash
 ```
 
 Preliminary testing suggest that you don't need to specify `CUDA` version for `pytorch`. To install `pytorch` I just went with:
