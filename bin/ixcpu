@@ -204,8 +204,11 @@ def main():
     # concatenate command
     full_cmd = cmd + mems + partition + qos + fin
 
+    if args.gpu:
+        full_cmd += ["set_cuda_mod"]
+
     if args.dry_run:
-        print(" ".join(full_cmd))
+        print("".join(full_cmd))
     else:
         # request the job
         run(full_cmd)

@@ -196,12 +196,14 @@ def main():
     ]
     fin = ["--account", str(args.account), "--pty", "bash"]
 
+    fin += ["set_cuda_mod"]
+
     # concatenate command
     full_cmd = cmd + mems + partition + qos + fin
 
     # request the job
     if args.dry_run:
-        print(" ".join(full_cmd))
+        print("".join(full_cmd))
     else:
         run(full_cmd)
 
