@@ -203,7 +203,7 @@ def main():
 
     # request the job
     if args.dry_run:
-        print("".join(full_cmd))
+        print(" ".join(full_cmd))
     else:
         run(full_cmd)
 
