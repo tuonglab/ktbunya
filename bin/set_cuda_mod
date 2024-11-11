@@ -52,7 +52,7 @@ amd_map["bun125"]="epyc4"
 if [[ -n "${cuda_map[$node]}" && -n "${amd_map[$node]}" ]]; then
     echo "Loading /sw/auto/rocky8c/${amd_map[$node]}_${cuda_map[$node]}/modules/all"
     # Use the CUDA and AMD paths based on the current node
-    module use --append /sw/auto/rocky8c/${amd_map[$node]}_${cuda_map[$node]}/modules/all
+    eval "module use --append /sw/auto/rocky8c/${amd_map[$node]}_${cuda_map[$node]}/modules/all"
 else
     echo "Error: No CUDA or AMD mapping found for node $node."
     exit 1
