@@ -96,7 +96,7 @@ print(
 If you do need to find out and specify your `cuda` version, you can run:
 ```bash
 # this will map the correct cuda path to your module path
-source cuda
+source cudamap
 
 # you can then check the available cuda versions with
 # module avail
