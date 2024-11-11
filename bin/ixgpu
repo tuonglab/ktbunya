@@ -115,6 +115,11 @@ def parse_args():
         default=None,
         help="QoS are used to control access to resources and apply sustainable limits. Accepts one of normal, gpu, debug, mig, sxm.",
     )
+    parser.add_argument(
+        "--dryrun",
+        action="store_true",
+        help="Print the command that would be run without running it.",
+    )
     args = parser.parse_args()
     return args
 
@@ -179,11 +184,12 @@ def main():
         "--partition",
         partition,
     ]
-    if args.partition is not None:
-        partition += [  # general/gpu/debug/ai
-            "--gres",
-            args.gres,
-        ]
+
+    partition += [  # general/gpu/debug/ai
+        "--gres",
+        args.gres,
+    ]
+
     qos = [
         "--qos",
         qos,
@@ -194,7 +200,10 @@ def main():
     full_cmd = cmd + mems + partition + qos + fin
 
     # request the job
-    run(full_cmd)
+    if args.dryrun:
+        print(" ".join(full_cmd))
+    else:
+        run(full_cmd)
 
 
 if __name__ == "__main__":

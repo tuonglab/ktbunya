@@ -1,0 +1,65 @@
+#!/bin/bash
+
+# Load the module environment, if necessary
+source /etc/profile.d/modules.sh
+
+# Get the short hostname of the current node
+node=$(hostname)
+
+# Declare associative arrays for CUDA and AMD mappings
+declare -A cuda_map
+declare -A amd_map
+
+# Populate the dictionaries
+cuda_map["bun003"]="a100"
+cuda_map["bun004"]="a100"
+cuda_map["bun005"]="a100"
+cuda_map["bun068"]="a100"
+cuda_map["bun071"]="h100"
+cuda_map["bun072"]="h100"
+cuda_map["bun073"]="h100"
+cuda_map["bun074"]="h100"
+cuda_map["bun075"]="h100"
+cuda_map["bun076"]="h100"
+cuda_map["bun116"]="h100"
+cuda_map["bun077"]="l40"
+cuda_map["bun078"]="l40"
+cuda_map["bun079"]="l40"
+cuda_map["bun080"]="l40"
+cuda_map["bun081"]="l40"
+cuda_map["bun082"]="l40"
+cuda_map["bun124"]="l40s"
+cuda_map["bun125"]="l40s"
+
+amd_map["bun003"]="epyc3"
+amd_map["bun004"]="epyc3"
+amd_map["bun005"]="epyc3"
+amd_map["bun068"]="epyc3"
+amd_map["bun071"]="epyc3"
+amd_map["bun072"]="epyc3"
+amd_map["bun073"]="epyc3"
+amd_map["bun074"]="epyc3"
+amd_map["bun075"]="epyc3"
+amd_map["bun076"]="epyc3"
+amd_map["bun116"]="epyc3"
+amd_map["bun077"]="epyc3"
+amd_map["bun078"]="epyc3"
+amd_map["bun079"]="epyc3"
+amd_map["bun080"]="epyc3"
+amd_map["bun081"]="epyc3"
+amd_map["bun082"]="epyc3"
+amd_map["bun124"]="epyc4"
+amd_map["bun125"]="epyc4"
+
+# Check if the node exists in the maps before using it
+if [[ -n "${cuda_map[$node]}" && -n "${amd_map[$node]}" ]]; then
+    echo "Loading /sw/auto/rocky8c/${amd_map[$node]}_${cuda_map[$node]}/modules/all"
+    # Use the CUDA and AMD paths based on the current node
+    module use --append /sw/auto/rocky8c/${amd_map[$node]}_${cuda_map[$node]}/modules/all
+else
+    echo "Error: No CUDA or AMD mapping found for node $node."
+    exit 1
+fi
+
+# Load the CUDA module
+module load cuda
