@@ -22,14 +22,13 @@ ixcpu
 ```
 
 ```bash
-usage: ixcpu [-h] [--ncpus NCPUS] [--mem MEM] [--mem_per_cpu MEM_PER_CPU] [--nodes NODES] [--ntasks NTASKS] [--account ACCOUNT] [--walltime WALLTIME] [--job_name JOB_NAME] [--gpu] [--gres GRES] [--partition PARTITION]
-             [--qos QOS]
+usage: ixcpu [-h] [--ncpus NCPUS] [--mem MEM] [--mem_per_cpu MEM_PER_CPU] [--nodes NODES] [--ntasks NTASKS] [--account ACCOUNT] [--walltime WALLTIME] [--job_name JOB_NAME] [--gpu] [--gres GRES] [--partition PARTITION] [--qos QOS] [--dry_run]
 
 options:
   -h, --help            show this help message and exit
   --ncpus NCPUS         Number of cpus for job. This is 1 for single core jobs, number of cores for multi core jobs, and 1 for MPI jobs. This can be undertstood as `OMP_NUM_THREADS`.
-  --mem MEM             RAM per job given in megabytes (M), gigabytes (G), or terabytes (T). Ask for 2000000M to get the maximum memory on a standard node. Ask for 4000000M to get the maximum memory on a high memory node.
-                        Default unit without specifying is in megabytes.
+  --mem MEM             RAM per job given in megabytes (M), gigabytes (G), or terabytes (T). Ask for 2000000M to get the maximum memory on a standard node. Ask for 4000000M to get the maximum memory on a high memory node. Default unit without
+                        specifying is in megabytes.
   --mem_per_cpu MEM_PER_CPU
                         Alternative to --mem argument. Only relevant to MPI jobs. Passes to `-mem-per-cpu`.
   --nodes NODES         How many nodes the job will use. Always 1 unless you know what you are doing.
@@ -38,11 +37,12 @@ options:
   --walltime WALLTIME   Wall time for the session to run (and complete).
   --job_name JOB_NAME   Name of job.
   --gpu                 If passed, submit to gpu queue. Overwrite partition with --partition.
-  --gres GRES           GRES syntax. Requires `gpu:[type]:[number]`. Type options for corresponding partitions are: gpu_cuda: h100, l40, a100 gpu_viz: l40 gpu_rocm: mi210 Visit https://github.com/UQ-RCC/hpc-
-                        docs/blob/main/guides/Bunya-User-Guide.md for more information.
+  --gres GRES           GRES syntax. Requires `gpu:[type]:[number]`. Type options for corresponding partitions are: gpu_cuda: h100, l40, a100 gpu_viz: l40 gpu_rocm: mi210 Visit https://github.com/UQ-RCC/hpc-docs/blob/main/guides/Bunya-User-
+                        Guide.md for more information.
   --partition PARTITION
                         If passed, overwrite partition.
   --qos QOS             QoS are used to control access to resources and apply sustainable limits. Accepts one of normal, gpu, debug, mig, sxm.
+  --dry_run             Print the command that would be run without running it.
 ```
 
 So, for a typical job where you want something like 24 cores and 32gb of ram, all you need to do is:
