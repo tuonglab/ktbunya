@@ -184,11 +184,12 @@ def main():
         "--partition",
         partition,
     ]
-    if args.partition is not None:
-        partition += [  # general/gpu/debug/ai
-            "--gres",
-            args.gres,
-        ]
+
+    partition += [  # general/gpu/debug/ai
+        "--gres",
+        args.gres,
+    ]
+
     qos = [
         "--qos",
         qos,
