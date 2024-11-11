@@ -121,7 +121,7 @@ def parse_args():
         help="QoS are used to control access to resources and apply sustainable limits. Accepts one of normal, gpu, debug, mig, sxm.",
     )
     parser.add_argument(
-        "--dry_run",
+        "--dryrun",
         action="store_true",
         help="Print the command that would be run without running it.",
     )
@@ -207,7 +207,7 @@ def main():
     if args.gpu:
         full_cmd += ["set_cuda_mod"]
 
-    if args.dry_run:
+    if args.dryrun:
         print(" ".join(full_cmd))
     else:
         # request the job

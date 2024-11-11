@@ -22,7 +22,7 @@ ixcpu
 ```
 
 ```bash
-usage: ixcpu [-h] [--ncpus NCPUS] [--mem MEM] [--mem_per_cpu MEM_PER_CPU] [--nodes NODES] [--ntasks NTASKS] [--account ACCOUNT] [--walltime WALLTIME] [--job_name JOB_NAME] [--gpu] [--gres GRES] [--partition PARTITION] [--qos QOS] [--dry_run]
+usage: ixcpu [-h] [--ncpus NCPUS] [--mem MEM] [--mem_per_cpu MEM_PER_CPU] [--nodes NODES] [--ntasks NTASKS] [--account ACCOUNT] [--walltime WALLTIME] [--job_name JOB_NAME] [--gpu] [--gres GRES] [--partition PARTITION] [--qos QOS] [--dryrun]
 
 options:
   -h, --help            show this help message and exit
@@ -42,7 +42,7 @@ options:
   --partition PARTITION
                         If passed, overwrite partition.
   --qos QOS             QoS are used to control access to resources and apply sustainable limits. Accepts one of normal, gpu, debug, mig, sxm.
-  --dry_run             Print the command that would be run without running it.
+  --dryrun             Print the command that would be run without running it.
 ```
 
 So, for a typical job where you want something like 24 cores and 32gb of ram, all you need to do is:
