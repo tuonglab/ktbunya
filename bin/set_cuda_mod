@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Get the short hostname of the current node
-node=$(hostname -s)
+node=$(hostname)
 
 # Declare associative arrays for CUDA and AMD mappings
 declare -A cuda_map
@@ -51,7 +51,7 @@ amd_map["bun125"]="epyc4"
 # Check if the node exists in the maps before using it
 if [[ -n "${cuda_map[$node]}" && -n "${amd_map[$node]}" ]]; then
     # Use the CUDA and AMD paths based on the current node
-    module use --append /sw/auto/rocky8c/${cuda_map[$node]}_${amd_map[$node]}/modules/all/cuda/
+    module use --append /sw/auto/rocky8c/${amd_map[$node]}_${cuda_map[$node]}/modules/all
 else
     echo "Error: No CUDA or AMD mapping found for node $node."
     exit 1
