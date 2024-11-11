@@ -14,10 +14,8 @@ setup(
     url="https://github.com/zktuong/ktbunya/",
     packages=find_packages(),
     setup_requires=["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.0"],
-    package_data={
-        "ktbunya": ["bin/jpynb", "bin/ixcpu", "bin/ixgpu", "bin/set_cuda_mod"]
-    },
-    data_files=[("bin", ["bin/jpynb", "bin/ixcpu", "bin/ixgpu", "bin/set_cuda_mod"])],
+    package_data={"ktbunya": ["bin/jpynb", "bin/ixcpu", "bin/ixgpu", "bin/cuda"]},
+    data_files=[("bin", ["bin/jpynb", "bin/ixcpu", "bin/ixgpu", "bin/cuda"])],
     include_package_data=True,
     classifiers=[
         "Programming Language :: Python :: 3.10",

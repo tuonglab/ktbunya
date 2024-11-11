@@ -196,8 +196,6 @@ def main():
     ]
     fin = ["--account", str(args.account), "--pty", "bash"]
 
-    fin += ['-c "source set_cuda_mod; bash"']
-
     # concatenate command
     full_cmd = cmd + mems + partition + qos + fin
 
