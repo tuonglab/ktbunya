@@ -58,6 +58,12 @@ srun --nodes 1 --ntasks-per-node 1 --job-name interactive_bunya --cpus-per-task 
 
 You can just tweak this/add on if you require different set up.
 
+For instance, if you are trying to distribute your jobs across multiple cores, you can try something like:
+```bash
+ixcpu --ncpus 1 --mem 32000 -ntasks 32 # this means there's 32 task, each with 1 cpu
+ixcpu --ncpus 32 # this means there's only 1 task but 32 cpus in it.
+```
+
 If you need GPU, just do:
 
 ```bash
