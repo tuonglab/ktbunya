@@ -60,9 +60,13 @@ You can just tweak this/add on if you require different set up.
 
 For instance, if you are trying to distribute your jobs across multiple cores, you can try something like:
 ```bash
-ixcpu --ncpus 1 --mem 32000 -ntasks 32 # this means there's 32 task, each with 1 cpu
-ixcpu --ncpus 32 # this means there's only 1 task but 32 cpus in it.
+# current default ixcpu -ntasks is 1
+ixcpu --ncpus 32 --ntasks 1 # this means there's only 1 task but 32 cpus in it.
+
+ixcpu --ncpus 1 --ntasks 32 # this means there's 32 task, each with 1 cpu
 ```
+
+`--ntasks=32 --ncpus=1` means we run 32 separate processes each on one core, while `--ntasks=1 --cpus=32` means we run one process that can use 32 cores only if the program is multithreaded.
 
 If you need GPU, just do:
 
