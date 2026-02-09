@@ -53,7 +53,7 @@ ixcpu --ncpus 24 --mem 32000
 
 The default command (just `ixcpu`) runs:
 ```bash
-srun --nodes 1 --ntasks-per-node 1 --job-name interactive_bunya --cpus-per-task 1 --mem 8000 --time 00:10:00 --partition general --qos normal --account a_kelvin_tuong --pty bash
+srun --nodes 1 --ntasks-per-node 1 --job-name interactive_bunya --cpus-per-task 1 --mem 8000 --time 00:10:00 --partition general --qos normal --account a_chrc --pty bash
 ```
 
 You can just tweak this/add on if you require different set up.
@@ -85,7 +85,7 @@ ixgpu
 `ixgpu` just runs:
 
 ```bash
-srun --nodes 1 --ntasks-per-node 1 --job-name interactive_bunya --cpus-per-task 1 --mem 8000 --time 00:10:00 --partition gpu_cuda --gres gpu:h100:1 --qos gpu --account a_kelvin_tuong --pty bash
+srun --nodes 1 --ntasks-per-node 1 --job-name interactive_bunya --cpus-per-task 1 --mem 8000 --time 00:10:00 --partition gpu_cuda --gres gpu:h100:1 --qos gpu --account a_chrc --pty bash
 ```
 
 Preliminary testing suggest that you don't need to specify `CUDA` version for `pytorch`. To install `pytorch` I just went with:
